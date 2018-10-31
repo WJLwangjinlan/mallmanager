@@ -8,7 +8,7 @@
         <el-form-item label="密码">
             <el-input v-model="formdata.password"></el-input>
         </el-form-item>
-        <el-button class="login-button" type="primary">登录</el-button>
+        <el-button class="login-button" type="primary" @click.prevent="handleLogin()">登录</el-button>
     </el-form>
 
 </div>
@@ -23,27 +23,41 @@ export default {
         password: ''
       }
     }
+  },
+  methods: {
+    handleLogin () {
+      this.$http.post('login', this.formdata)
+        .then((res) => {
+        //   console.log(res)
+          const {meta} = res.data
+          if (meta.status === 200) {
+            this.$message.success(meta.msg)
+          } else {
+            this.$message.warning(meta.msg)
+          }
+        })
+    }
   }
 }
 </script>
 
 <style>
 .login-wrap {
-  background-color: #324152;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+    background-color: #324152;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .login-wrap .login-form {
-  background-color: #fff;
-  width: 400px;
-  padding: 30px;
-  border-radius: 5px;
+    background-color: #fff;
+    width: 400px;
+    padding: 30px;
+    border-radius: 5px;
 }
 
 .login-wrap .login-form .login-button {
-  width: 100%;
+    width: 100%;
 }
 </style>
