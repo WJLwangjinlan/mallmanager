@@ -25,18 +25,35 @@ export default {
     }
   },
   methods: {
-    handleLogin () {
-      this.$http.post('login', this.formdata)
-        .then((res) => {
-        //   console.log(res)
-          const {meta} = res.data
-          if (meta.status === 200) {
-            this.$message.success(meta.msg)
-          } else {
-            this.$message.warning(meta.msg)
-          }
-        })
+    async handleLogin () {
+      const res = await this.$http.post('login', this.formdata)
+      console.log(res)
+      const {meta} = res.data
+      if (meta.status === 200) {
+        const token = res.data.data.token
+        sessionStorage.setItem('token', token)
+        this.$router.push('/')
+        // 登录成功
+        this.$message.success(meta.msg)
+      } else {
+        // 登录失败
+        this.$message.warning(meta.msg)
+      }
     }
+    // handleLogin () {
+    //   this.$http.post('login', this.formdata)
+    //     .then((res) => {
+    //       const {meta} = res.data
+    // // 提示框
+    //       if (meta.status === 200) {
+    // // 登录成功
+    //         this.$message.success(meta.msg)
+    //       } else {
+    // // 登录失败
+    //         this.$message.warning(meta.msg)
+    //       }
+    //     })
+    // }
   }
 }
 </script>
