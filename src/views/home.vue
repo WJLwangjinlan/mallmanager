@@ -20,6 +20,7 @@
       default-active="1"
       :router = "true"
       class="el-menu-vertical-demo menu">
+      <!-- 用户管理 -->
       <el-submenu index="1">
         <template slot="title">
           <i class="el-icon-location"></i>
@@ -29,6 +30,7 @@
             <i class="el-icon-menu"></i>
             用户列表</el-menu-item>
       </el-submenu>
+      <!-- 权限管理 -->
             <el-submenu index="2">
         <template slot="title">
           <i class="el-icon-location"></i>
@@ -41,6 +43,7 @@
             <i class="el-icon-menu"></i>
             权限列表</el-menu-item>
       </el-submenu>
+      <!-- 商品管理 -->
             <el-submenu index="3">
         <template slot="title">
           <i class="el-icon-location"></i>
@@ -56,6 +59,7 @@
             <i class="el-icon-menu"></i>
             商品分类</el-menu-item>
       </el-submenu>
+      <!-- 订单管理 -->
             <el-submenu index="4">
         <template slot="title">
           <i class="el-icon-location"></i>
@@ -65,6 +69,7 @@
             <i class="el-icon-menu"></i>
             订单列表</el-menu-item>
       </el-submenu>
+      <!-- 数据统计 -->
             <el-submenu index="5">
         <template slot="title">
           <i class="el-icon-location"></i>
@@ -72,12 +77,14 @@
         </template>
           <el-menu-item index="5-1">
             <i class="el-icon-menu"></i>
-            数据保表</el-menu-item>
+            数据报表</el-menu-item>
       </el-submenu>
       </el-menu>
     </el-aside>
 
-    <el-main>Main</el-main>
+    <el-main>
+      <router-view></router-view>
+    </el-main>
   </el-container>
 </el-container>
 </template>
@@ -99,11 +106,11 @@ export default {
     }
   },
   methods: {
-    loginout() {
-      // 1 清除session
+    loginout () {
+      // 1 清除session中token
       sessionStorage.clear()
       // 2 跳转页面
-      this.$router.push({name:'login'})
+      this.$router.push({name: 'login'})
       // 3 提示
       this.$message.success('退出成功')
     }
