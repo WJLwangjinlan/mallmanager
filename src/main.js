@@ -8,6 +8,7 @@ import App from './App'
 import router from './router'
 import './assets/css/index.css'
 import HttpTool from './pulign/http.js'
+import MyBread from '@/components/myBread'
 
 Vue.use(ElementUI)
 Vue.use(HttpTool)
@@ -15,6 +16,9 @@ Vue.use(HttpTool)
 Vue.filter('fmtDate',function (v) {
   return moment(v).format('YYYY-MM-DD hh:mm:ss')
 })
+
+Vue.component('my-bread',MyBread)
+
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */
