@@ -16,7 +16,7 @@
   </el-row>
 
   <!-- 表格 -->
-  <el-table  v-loading="loading" :data="list" style="width: 100%">
+  <el-table  v-loading="loading" height="300" :data="list" style="width: 100%">
     <el-table-column type="index" prop="date" label="#" width="100">
     </el-table-column>
     <el-table-column prop="username" label="姓名" width="100">
@@ -77,7 +77,6 @@
         <el-form-item label="电话" :label-width="formLabelWidth">
           <el-input v-model="formData.mobile" autocomplete="off"></el-input>
         </el-form-item>
-
       </el-form>
       <div slot="footer" class="dialog-footer">
         <el-button @click="dialogFormVisibleAdduser = false">取 消</el-button>
